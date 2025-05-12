@@ -1,5 +1,5 @@
 import Image from "next/image";
-import WalkAround from "./components/walk-around/WalkAround";
+import WalkAround from "../components/walk-around/WalkAround";
 
 export default function Home() {
   return (

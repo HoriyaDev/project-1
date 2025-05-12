@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StepThree = () => {
+const signinPage = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const StepThree = () => {
   )
 }
 
-export default StepThree
+export default signinPage

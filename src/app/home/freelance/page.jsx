@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StepTwo = () => {
+const freelancerPage = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const StepTwo = () => {
   )
 }
 
-export default StepTwo
+export default freelancerPage

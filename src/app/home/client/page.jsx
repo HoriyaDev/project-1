@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StepFour = () => {
+const ClientPage = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const StepFour = () => {
   )
 }
 
-export default StepFour
+export default ClientPage
