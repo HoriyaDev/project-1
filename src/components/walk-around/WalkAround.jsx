@@ -1,11 +1,13 @@
 "use client";
 
-import Image from 'next/image';
-import { useState } from 'react';
-import { data } from '@/utils/constant';
+import Image from "next/image";
+import { useState } from "react";
+import { data } from "@/utils/constant";
+import { useRouter } from "next/navigation";
 
 export default function WalkAround() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const router = useRouter();
 
   const handleNext = () => {
     if (currentIndex < data.length - 1) {
@@ -14,20 +16,15 @@ export default function WalkAround() {
   };
 
   const handleSkip = () => {
-   
     setCurrentIndex(data.length - 1);
+    router.push('/home')
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-between p-4 w-full bg-white">
       {/* Logo */}
       <div className="mt-6">
-        <Image
-          src="/logo.png"
-          alt="Logo"
-          width={400}
-          height={100}
-        />
+        <Image src="/logo.png" alt="Logo" width={400} height={100} />
       </div>
 
       {/* Main Content */}
@@ -47,32 +44,45 @@ export default function WalkAround() {
         </h2>
 
         {/* Description */}
-        <p className="text-gray-500 text-sm px-4">{data[currentIndex].disc}</p>
+        <p className="text-gray-500 text-sm px-4">
+          {data[currentIndex].disc}
+        </p>
       </div>
 
       {/* Dots */}
-      <div className="flex gap-2 mt-6">
-        {data.map((_, index) => (
-          <span
-            key={index}
-            className={`w-2 h-2 rounded-full ${currentIndex === index ? 'bg-[#00249C] w-5' : 'bg-gray-300'}`}
-          ></span>
-        ))}
-      </div>
+      {currentIndex < data.length - 1 && (
+        <div className="flex gap-2 mt-6">
+          {data.slice(0, data.length - 1).map((_, index) => (
+            <span
+              key={index}
+              className={`w-2 h-2 rounded-full ${
+                currentIndex === index ? "bg-[#00249C] w-5" : "bg-gray-300"
+              }`}
+            ></span>
+          ))}
+        </div>
+      )}
 
       {/* Buttons */}
-      <div className="flex justify-between items-center w-full max-w-[400px] px-6 mt-6">
-        <button
-          className="text-[#00249C] font-medium"
-          onClick={handleSkip}
-        >
+      <div className="flex justify-between items-center w-full max-w-[400px] px-6 mt-6 ">
+        <button className="text-[#00249C] cursor-pointer font-medium" onClick={handleSkip}>
           Skip
         </button>
         <button
-          className="bg-[#B6F5E6] text-[#00249C] px-4 py-2 rounded-md"
-          onClick={handleNext}
+          className={`px-4 py-2 rounded-md cursor-pointer ${
+            currentIndex >= data.length - 2
+              ? "text-white bg-[#00249C]"
+              : "bg-[#B6F5E6] text-[#00249C]"
+          }`}
+          onClick={() => {
+            if (currentIndex >= data.length - 1) {
+              router.push("/home");
+            } else {
+              handleNext();
+            }
+          }}
         >
-          Next
+          {currentIndex >= data.length - 2 ? "Get Started" : "Next"}
         </button>
       </div>
     </div>
