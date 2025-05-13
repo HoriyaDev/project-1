@@ -36,7 +36,7 @@ const Card = () => {
           >
             Get Started →
           </button>
-         <buttom>erfjh4ifhjo4i</buttom>
+       
         </div>
       ))}
     </div>
