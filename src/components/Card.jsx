@@ -36,6 +36,7 @@ const Card = () => {
           >
             Get Started →
           </button>
+         
         </div>
       ))}
     </div>
